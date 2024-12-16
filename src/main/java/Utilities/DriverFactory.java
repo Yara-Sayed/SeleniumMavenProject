@@ -2,21 +2,35 @@ package Utilities;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverFactory {
     static WebDriver driver;
 
-    public static WebDriver initiateDriver(String browserName, boolean maximize) {
+    public static WebDriver initiateDriver(String browserName, boolean maximize, boolean headless) {
         if (browserName.equalsIgnoreCase("chrome")) {
             System.out.println("initializing Chrome Browser on OS: " + System.getProperty("os.name") + " and it's version is: " + System.getProperty("os.version"));
-            driver = new ChromeDriver();
+            ChromeOptions Options= new ChromeOptions();
+            if (headless) {
+                Options.addArguments("headless");
+                driver = new ChromeDriver(Options);
             System.out.println("Successfully initialized the Chrome Browser");
         } else if (browserName.equalsIgnoreCase("firefox")) {
-            driver = new FirefoxDriver();
+                System.out.println("initializing Firefox Browser on OS: " + System.getProperty("os.name") + " and it's version is: " + System.getProperty("os.version"));
+                FirefoxOptions options = new FirefoxOptions();
+                options.addArguments("--headless");
+                driver = new FirefoxDriver(options);
+            }
         } else if (browserName.equalsIgnoreCase("Edge")) {
-            driver = new EdgeDriver();
+            System.out.println("initializing Edge Browser on OS: " + System.getProperty("os.name") + " and it's version is: " + System.getProperty("os.version"));
+            EdgeOptions options=new EdgeOptions();
+            options.addArguments("--headless");
+            driver=new EdgeDriver(options);
+
         }
         if (maximize) {
             driver.manage().window().maximize();

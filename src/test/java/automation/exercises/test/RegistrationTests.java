@@ -23,7 +23,7 @@ public class RegistrationTests {
     public void setup() {
         //driver = new EdgeDriver();
         //driver.manage().window().maximize();
-        driver = DriverFactory.initiateDriver(System.getProperty("browserName"), true);
+        driver = DriverFactory.initiateDriver(System.getProperty("browserName"),Boolean.parseBoolean(System.getProperty("maximizeWindow")), Boolean.parseBoolean(System.getProperty("headlessExecution")));
         testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/RegisterationTestJsonFile.json");
     }
     @BeforeSuite
