@@ -59,7 +59,7 @@ jobs:
           with:
             maven-version: 3.9.9
         - name: Execute Tests
-          run: mvn -DbrowserName="Chrome" DheadlessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
+          run: mvn -DbrowserName="Chrome" -DheadlessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
 
         - name: Publish Report
           continue-on-error: true
