@@ -20,7 +20,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
+          distribution: 'zulu'
           java-version: '21'
 
       - name: Setup Maven
@@ -39,6 +39,15 @@ jobs:
           name: Tests Report
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
+      - name: Generate Allure Report Single File
+        continue-on-error: true
+        run: mvn allure:report
+
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Edge_Windows_Allure
+          path: target/site/allure-maven-plugin/index.html
 
   E2E_UbuntuChrome_Test:
     runs-on: ubuntu-latest
@@ -69,3 +78,12 @@ jobs:
             name: Tests Report
             path: 'target/surefire-reports/TEST-*.xml'
             reporter: java-junit
+        - name: Generate Allure Report Single File
+          continue-on-error: true
+          run: mvn allure:report
+
+        - name: Upload Allure Report as Artifact
+          uses: actions/upload-artifact@v3
+          with:
+            name: Chrome_Linux_Allure
+            path: target/site/allure-maven-plugin/index.html
