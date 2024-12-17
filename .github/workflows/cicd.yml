@@ -12,9 +12,6 @@ on:
   release:
     types: [created]
 
-  schedule:
-    - cron: '*/5 * * * *'
-
 jobs:
   E2E_WindowsEdge_Test:
     runs-on: windows-latest
