@@ -5,7 +5,7 @@ on:
     inputs:
       testsPath:
         description: 'Path to Tests to be Executed'
-        default: ''
+        default: 'automation.exercises.test.RegistrationTests'
 
   schedule:
     - cron: "00 1 * * *"
