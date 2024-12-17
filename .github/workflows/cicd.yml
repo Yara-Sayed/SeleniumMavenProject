@@ -1,8 +1,10 @@
 name: E2E Tests
 
 on:
-  workflow_dispatch:
-    inputs:
+  schedule:
+    - cron:*/5 * * * *
+
+  inputs:
       testsPath:
         description: 'Path to Tests to be Executed'
         default: ''
@@ -39,6 +41,7 @@ jobs:
           name: Tests Report
           path: 'target/surefire-reports/TEST-*.xml'
           reporter: java-junit
+
       - name: Generate Allure Report Single File
         continue-on-error: true
         run: mvn allure:report
