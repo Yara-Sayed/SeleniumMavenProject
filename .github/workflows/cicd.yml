@@ -14,7 +14,7 @@ on:
   pull_request:
     branches:
       - main
-#ay 7aga
+#ay 7ag
 #  push:
 #    branches: [master]
 #  release:
