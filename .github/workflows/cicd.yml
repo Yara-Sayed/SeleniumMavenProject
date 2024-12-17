@@ -7,6 +7,9 @@ on:
   release:
     types: [created]
 
+  schedule:
+    - cron: '4 * * * *'
+
 jobs:
   E2E_WindowsEdge_Test:
     runs-on: windows-latest
