@@ -70,14 +70,7 @@ jobs:
         - name: Execute Tests
           run: mvn -DbrowserName="Chrome" -DheadlessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
 
-        - name: Publish Report
-          continue-on-error: true
-          uses: dorny/test-reporter@v1
-          if: success() || failure()
-          with:
-            name: Tests Report
-            path: 'target/surefire-reports/TEST-*.xml'
-            reporter: java-junit
+
         - name: Generate Allure Report Single File
           continue-on-error: true
           run: mvn allure:report
@@ -87,3 +80,13 @@ jobs:
           with:
             name: Chrome_Linux_Allure
             path: target/site/allure-maven-plugin/index.html
+
+        - name: Publish Report
+          continue-on-error: true
+          uses: dorny/test-reporter@v1
+          if: success() || failure()
+          with:
+            name: Tests Report
+            path: 'target/surefire-reports/TEST-*.xml'
+            reporter: java-junit
+
