@@ -28,7 +28,7 @@ jobs:
           maven-version: 3.9.9
 
       - name: Execute Tests
-        run: mvn -DbrowserName="Edge" -Dtest="automation.exercises.test.RegistrationTests}" test
+        run: mvn -DbrowserName="Edge" -Dtest="automation.exercises.test.RegistrationTests" test
 
       - name: Publish Report
         continue-on-error: true
