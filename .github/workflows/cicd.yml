@@ -1,9 +1,11 @@
 name: E2E Tests
 
 on:
-   schedule:
-      - cron: "*/5 * * * *"
-   inputs:
+  schedule:
+    - cron:"*/5 * * * *"
+
+  workflow_dispatch:
+    inputs:
       testsPath:
         description: 'Path to Tests to be Executed'
         default: ''
