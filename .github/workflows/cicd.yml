@@ -1,8 +1,14 @@
 name: E2E Tests
 
 on:
+  workflow_dispatch:
+    inputs:
+      testsPath:
+        description: 'Path to Tests to be Executed'
+        default: ''
+
   schedule:
-    - cron:"*/5 * * * *"
+    - cron: "00 1 * * *"
 
 jobs:
   E2E_WindowsEdge_Test:
