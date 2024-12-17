@@ -1,22 +1,20 @@
 name: E2E Tests
 
 on:
+  push:
+    branches: [master]
+  release:
+    types: [created]
 
   workflow_dispatch:
     inputs:
       testsPath:
         description: 'Path to Tests to be Executed'
         default: 'automation.exercises.test.RegistrationTests'
+
   schedule:
     - cron: '*/10 * * * *'
 
-  pull_request:
-    branches:
-      - master
-#  push:
-#    branches: [master]
-#  release:
-#    types: [created]
 jobs:
   E2E_WindowsEdge_Test:
     runs-on: windows-latest
