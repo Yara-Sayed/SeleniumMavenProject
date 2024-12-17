@@ -7,10 +7,6 @@ on:
     branches: [master]
   release:
     types: [created]
-  schedule:
-    - cron: '*/15 * * * *'
-
-
 jobs:
   E2E_WindowsEdge_Test:
     runs-on: windows-latest
@@ -33,7 +29,7 @@ jobs:
           maven-version: 3.9.9
 
       - name: Execute Tests
-        run: mvn -DbrowserName="Edge" -Dtest="${{ github.event.inputs.testsPath }}" test
+        run: mvn -DbrowserName="Edge" -Dtest="automation.exercises.test.RegistrationTests" test
 
       - name: Publish Report
         continue-on-error: true
