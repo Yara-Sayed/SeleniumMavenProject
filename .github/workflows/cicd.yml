@@ -8,7 +8,7 @@ on:
         default: ''
 
   schedule:
-    - cron: "*/2 * * * *"
+    - cron: '*/2 * * * *'
 
 jobs:
   E2E_WindowsEdge_Test:
