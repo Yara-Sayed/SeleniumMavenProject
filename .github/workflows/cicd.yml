@@ -8,7 +8,11 @@ on:
         default: ''
 
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '00 1 * * *'
+
+  pull_request:
+    branches:
+      - master
 
 jobs:
   E2E_WindowsEdge_Test:
