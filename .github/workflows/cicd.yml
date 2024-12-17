@@ -2,6 +2,10 @@ name: E2E Tests
 
 on:
   workflow_dispatch:
+    inputs:
+      testsPath:
+        description: 'Path to Tests to be Executed'
+        default: ''
 
   schedule:
     - cron:"00 1 * * *"
@@ -28,7 +32,7 @@ jobs:
           maven-version: 3.9.9
 
       - name: Execute Tests
-        run: mvn -DbrowserName="Edge" -Dtest="automation.exercises.test.RegistrationTests" test
+        run: mvn -DbrowserName="Edge" -Dtest="${{ github.event.inputs.testsPath }}" test
 
       - name: Publish Report
         continue-on-error: true
