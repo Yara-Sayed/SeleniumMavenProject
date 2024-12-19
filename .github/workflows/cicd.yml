@@ -9,12 +9,11 @@ on:
         default: 'automation.exercises.test.RegistrationTests'
 
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '0 0 10 * *'
 
   pull_request:
     branches:
       - main
-#ay 7ag
 #  push:
 #    branches: [master]
 #  release:
@@ -66,6 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
         checks: write
+
     steps:
         - name: Checkout Code
           uses: actions/checkout@v4
@@ -80,9 +80,9 @@ jobs:
           uses: stCarolas/setup-maven@v4.5
           with:
             maven-version: 3.9.9
+
         - name: Execute Tests
           run: mvn -DbrowserName="Chrome" -DheadlessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
-
 
         - name: Generate Allure Report Single File
           continue-on-error: true
